@@ -89,15 +89,87 @@ ALTER TABLE users
     ADD CONSTRAINT pk_users PRIMARY KEY users (id),
     MODIFY COLUMN user_name VARCHAR(30) UNIQUE;
 
+
+/*13*/
 CREATE DATABASE soft_uni;
 USE soft_uni;
-CREATE TABLE towns(
-    id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE towns
+(
+    id   INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL
 );
-CREATE TABLE addresses(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    address_text VARCHAR(255) NOT NULL ,
-    town_id INT NOT NULL
+CREATE TABLE addresses
+(
+    id           INT PRIMARY KEY AUTO_INCREMENT,
+    address_text VARCHAR(255) NOT NULL,
+    town_id      INT          NOT NULL
+);
+CREATE TABLE departments
+(
+    id   INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE employees
+(
+    id            INT PRIMARY KEY AUTO_INCREMENT,
+    first_name    VARCHAR(255) NOT NULL,
+    middle_name   VARCHAR(255) NOT NULL,
+    last_name     VARCHAR(255) NOT NULL,
+    job_title     VARCHAR(255) NOT NULL,
+    department_id INT          NOT NULL,
+    hire_date     DATE,
+    salary        DECIMAL,
+    address_id    INT          NOT NULL
+);
+
+INSERT INTO towns(name)
+VALUES ('Sofia'),
+       ('Plovdiv'),
+       ('Varna'),
+       ('Burgas');
+
+INSERT INTO departments(name)
+VALUES ('Engineering'),
+       ('Sales'),
+       ('Marketing'),
+       ('Software Development'),
+       ('Quality Assurance');
+
+INSERT INTO employees(first_name, middle_name, last_name, job_title, department_id, hire_date, salary)
+VALUES ('Ivan', 'Ivanov', 'Ivanov', 'NET Developer', 4, '2013-02-01', 3500),
+       ('Ivan', 'Ivanov', 'Ivanov', 'NET Developer', 4, '2013-02-01', 3500),
+       ('Ivan', 'Ivanov', 'Ivanov', 'NET Developer', 4, '2013-02-01', 3500),
+       ('Ivan', 'Ivanov', 'Ivanov', 'NET Developer', 4, '2013-02-01', 3500),
+       ('Ivan', 'Ivanov', 'Ivanov', 'NET Developer', 4, '2013-02-01', 3500);
+
+/*14,15*/
+SELECT *
+FROM towns
+ORDER BY name;
+
+SELECT *
+FROM departments
+ORDER BY name;
+
+SELECT *
+FROM employees
+ORDER BY salary DESC;
+
+/*16*/
+SELECT name
+FROM towns
+ORDER BY name;
+
+SELECT name
+FROM departments
+ORDER BY name;
+
+SELECT first_name, last_name, job_title, salary
+FROM employees
+ORDER BY salary DESC;
+
+/*17*/
+UPDATE employees
+SET salary=salary*1.10;
+SELECT  salary from employees;
