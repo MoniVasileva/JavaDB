@@ -94,4 +94,15 @@ FROM employees
 ORDER BY salary DESC
 LIMIT 1;
 SELECT * From v_top_paid_employee;
+#4
+Update employees
+SET  salary= salary+100;
+#Where job_title= 'Manager';
+SELECT salary
+FROM employees;
+#WHERE job_title='Manager';
 
+#5
+DELETE FROM employees
+WHERE department_id IN (1,2);
+SELECT * FROM employees ORDER BY id;
