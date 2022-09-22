@@ -66,16 +66,32 @@ VALUES ('Pesho', 'Petrov', 1),
        ('Nikolay', 'Nikolaev', 2);
 
 USE hotel;
- #1
+#1
 SELECT id         AS 'No. ',
        first_name AS 'First Name',
        last_name  AS 'Last Name',
        job_title  As 'Title'
 FROM employees
 ORDER BY id;
+#2
+SELECT id,
+       CONCAT_WS(' ', first_name, last_name) AS 'Full Name',
+       job_title                             As 'Job Title',
+       salary                                AS 'Salary'
+FROM employees
+WHERE salary > 1000
+ORDER BY id;
 
-SELECT id, CONCAT_WS(' ',first_name,' ',last_name) AS 'Full Name',
-       job_title As 'Job Title',
-       salary AS  'Salary'
-FROM employees;
+SELECT *
+FROM employees
+WHERE department_id = 4
+  AND salary > 1000;
+
+#3
+CREATE VIEW v_top_paid_employee AS
+SELECT *
+FROM employees
+ORDER BY salary DESC
+LIMIT 1;
+SELECT * From v_top_paid_employee;
 
