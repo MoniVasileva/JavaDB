@@ -79,5 +79,12 @@ SELECT REPLACE( title,'The','***') AS 'title'
 FROM books
 WHERE substring(title,1,3)  = 'The';
 
+#3
+SELECT ROUND(SUM(cost),2)
+FROM books;
+
+
+
+
 
 
