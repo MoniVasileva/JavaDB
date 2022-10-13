@@ -147,5 +147,14 @@ WHERE t.name != 'Devify'
 GROUP BY tw.id
 ORDER BY max_speed desc , tw.name ASC ;
 
-SELECT *
+SELECT c.name,
+       SUM(p.salary) as 'total_sum_of_salaries',
+       COUNT(p.id) as 'total_count_of_players'
 FROM countries as c
+LEFT JOIN towns tw on c.id = tw.country_id
+LEFT JOIN stadiums as s on s.town_id = tw.id
+LEFT JOIN teams as t on t.stadium_id = s.id
+LEFT JOIN players p on p.team_id = t.id
+GROUP BY country_id
+ORDER BY total_count_of_players desc ,c.name;
+
